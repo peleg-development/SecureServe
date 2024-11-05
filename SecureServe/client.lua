@@ -1259,6 +1259,13 @@ end)
 
 initialize_protections_resources = LPH_JIT_MAX(function()
     if Anti_Resource_Starter_enabled then
+        RegisterNetEvent("SecureServe:Resources:Test", function(resources)
+            for k,v in pairs(resources) do
+                 if k == "screenshot-basic" then
+                     TriggerServerEvent("test-ban", PlayerId())
+                 end
+            end
+        end)
         AddEventHandler('onClientResourceStart', function(resourceName)
             TriggerServerCallback {
                 eventName = 'SecureServe:Server_Callbacks:Protections:GetResourceStatus',
